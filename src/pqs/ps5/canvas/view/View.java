@@ -14,6 +14,8 @@ import java.awt.geom.Line2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import pqs.ps5.canvas.model.Listener;
 import pqs.ps5.canvas.model.Model;
 
@@ -78,8 +80,14 @@ public class View implements Listener {
    * 
    * @param startPoint the start point of the line to draw
    */
-  private void handlePressed(Point startPoint) {
+  @VisibleForTesting
+  public void handlePressed(Point startPoint) {
     this.startPoint = startPoint;
+  }
+  
+  @VisibleForTesting
+  public Point getStartPoint() {
+    return this.startPoint;
   }
   
   /**
@@ -88,7 +96,8 @@ public class View implements Listener {
    * 
    * @param endPoint   the end point of the line to draw
    */
-  private void handleDragged(Point endPoint) {
+  @VisibleForTesting
+  public void handleDragged(Point endPoint) {
     this.model.startDraw(this.startPoint, endPoint);
   }
 

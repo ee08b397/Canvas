@@ -14,7 +14,7 @@ import pqs.ps5.canvas.view.View;
  * App canvasApp = App.getInstance();</code> and startGame(). 
  * <p>
  * Use default toString() and hashCode() is good enough. Equals() will not be 
- * used as it is singleton. v1 Game is unit testted under testsrc/ and 87.0% 
+ * used as it is singleton. v1 Game is unit testted under testsrc/ and 94.9% 
  * code coverage. 
  * 
  * @author    Songxiao Zhang

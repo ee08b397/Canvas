@@ -1,5 +1,7 @@
 package pqs.ps5.canvas.model;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Point;
@@ -22,29 +24,47 @@ public class ModelTest {
   public void testMultiModel() {
     Model testModel = new Model();
     assertTrue(!this.model.equals(testModel));
+    assertEquals(this.model.listeners.size(), 0);
+    assertEquals(testModel.listeners.size(), 0);
+  }
+  
+  @Test
+  public void testAddNullListener() {
+    Listener listener = null;
+    this.model.addListener(listener);
+    assertEquals(this.model.listeners.size(), 1);
+    assertNull(this.model.listeners.get(0));
   }
   
   @Test
   public void testAddListener() {
-    Listener listener = null;
-    this.model.addListener(listener);
-    assertTrue(true);
+    View view1 = new View(this.model);
+    assertEquals(this.model.listeners.size(), 1);
+    assertEquals(this.model.listeners.get(0), view1);
+    
+    View view2 = new View(this.model);
+    assertEquals(this.model.listeners.size(), 2);
+    assertEquals(this.model.listeners.get(1), view2);
   }
   
   @Test
   public void testRemoveListener() {
-    Listener listener = null;
-    this.model.removeListener(listener);
-    
-    assertTrue(true);
+    View view = new View(this.model);
+    assertEquals(this.model.listeners.size(), 1);
+    this.model.removeListener(view);
+    assertEquals(this.model.listeners.size(), 0);
   }
   
   @Test
   public void testStartDraw() {
-    new View(this.model);
+    View view1 = new View(this.model);
+    View view2 = new View(this.model);
     this.model.startDraw(new Point(3, 1), new Point(2, 4));
     
-    assertTrue(true);
+    assertEquals(view1.getStartPoint().x, 2);
+    assertEquals(view1.getStartPoint().y, 4);
+    assertEquals(view2.getStartPoint().x, 2);
+    assertEquals(view2.getStartPoint().y, 4);
   }
   
 }

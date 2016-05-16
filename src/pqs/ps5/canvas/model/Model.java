@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.annotations.VisibleForTesting;
+
 /**
  * Model of multi-window canvas app. Model is in Observer pattern and it powers 
  * the game and communicate with viewers by listener interfaces. Create a new 
@@ -20,7 +22,7 @@ public class Model {
    * listeners list keeps track of all listeners hearing model's Listener
    * interface. 
    */
-  private List<Listener> listeners = new ArrayList<Listener>();
+  @VisibleForTesting List<Listener> listeners = new ArrayList<Listener>();
   
   /**
    * Add listener to listening list via Listener interface

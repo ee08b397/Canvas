@@ -4,6 +4,12 @@
   <target name="init">
     <tstamp />
   </target>
+  
+  <path id="guava.path">
+    <fileset dir="lib">
+      <include name="guava-19.0.jar" />
+    </fileset>
+  </path>
 
   <target name="clean" depends="init" description="delete compiled code">
     <delete dir="bin" />
@@ -12,7 +18,9 @@
 
   <target name="compile" depends="init" description="compile source code">
     <mkdir dir="bin" />
-    <javac includeantruntime="false" srcdir="src" destdir="bin" />
+    <javac includeantruntime="false" srcdir="src" destdir="bin">
+      <classpath refid="guava.path" />
+      </javac>
   </target>
 
   <target name="dist" depends="clean, compile" description="description">
