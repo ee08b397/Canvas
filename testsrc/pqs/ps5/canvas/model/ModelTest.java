@@ -56,6 +56,12 @@ public class ModelTest {
   }
   
   @Test
+  public void testRemoveEmptyListenerList() {
+    this.model.removeListener(null);
+    assertEquals(this.model.listeners.size(), 0);
+  }
+  
+  @Test
   public void testStartDraw() {
     View view1 = new View(this.model);
     View view2 = new View(this.model);
